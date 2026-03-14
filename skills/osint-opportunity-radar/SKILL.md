@@ -80,9 +80,24 @@ python3 scripts/opportunity_radar.py --days 7
 如果用户提到某个人物的商业动向但该人物不在监控列表中：
 1. 告知「该人物不在监控列表，当前报告不包含其数据」
 2. 询问「是否要添加到监控列表？需要哪些平台的 ID？」
-3. 确认后编辑 `~/Desktop/osint-station/config/watchlist.json`，在 `people` 数组末尾追加
-4. 运行 `cd ~/Desktop/osint-station && source .venv/bin/activate && python3 main.py collect "人物名"` 触发首次采集
-5. 重新生成报告
+3. 确认后用管理脚本添加：
+
+```bash
+cd ~/Desktop/osint-station && source .venv/bin/activate
+python3 scripts/manage_ops.py add "人物名" --twitter handle --youtube channel_id --tags AI --priority medium
+python3 scripts/manage_ops.py collect "人物名"
+```
+
+4. 重新生成报告
+
+### 查看/管理监控列表
+```bash
+cd ~/Desktop/osint-station && source .venv/bin/activate
+python3 scripts/manage_ops.py list      # 查看所有监控人物
+python3 scripts/manage_ops.py stats     # 查看数据库统计
+python3 scripts/manage_ops.py remove "人物名"   # 移除人物
+python3 scripts/manage_ops.py priority "人物名" high  # 调优先级
+```
 
 ### 可选后处理（推送企微/飞书）
 ```bash

@@ -78,7 +78,21 @@ python3 scripts/daily_digest.py --days 1
 ### 数据不够时
 如果近 1 天无数据，自动建议：
 1. 扩大到 `--days 3` 重试
-2. 或运行采集：`cd ~/Desktop/osint-station && source .venv/bin/activate && python3 main.py collect`
+2. 或触发全量采集：
+
+```bash
+cd ~/Desktop/osint-station && source .venv/bin/activate
+python3 scripts/manage_ops.py collect --all
+```
+
+### 查看/管理监控列表
+```bash
+cd ~/Desktop/osint-station && source .venv/bin/activate
+python3 scripts/manage_ops.py list      # 查看所有监控人物
+python3 scripts/manage_ops.py stats     # 查看数据库统计
+python3 scripts/manage_ops.py add "人物名" --twitter handle --priority medium  # 新增人物
+python3 scripts/manage_ops.py remove "人物名"   # 移除人物
+```
 
 ### 可选后处理（推送企微/飞书）
 ```bash

@@ -85,9 +85,88 @@ python3 scripts/person_brief.py "人物名称" --days 30
 | 时间线 | `.timeline` + `.timeline-item` + `.timeline-time` + `.timeline-content` | 活跃时间线 |
 | 元信息 | `.meta-info` | 人物/时间/平台信息 |
 
+## 未找到人物时的处理（查不到就加）
+
+如果在 DB 和 watchlist 中都找不到目标人物：
+
+1. 告诉用户「该人物不在监控列表中，暂无数据」
+2. 询问「是否要添加到监控列表？需要提供哪些平台的 ID/用户名」
+3. 用户确认后，用管理脚本一键添加：
+
+```bash
+cd ~/Desktop/osint-station && source .venv/bin/activate
+python3 scripts/manage_ops.py add "人物名" --twitter handle --youtube channel_id --github username --tags AI,创业 --priority high --notes "备注"
+```
+
+4. 触发首次采集：
+
+```bash
+python3 scripts/manage_ops.py collect "人物名"
+```
+
+5. 采集完成后生成报告：`python3 scripts/person_brief.py "人物名"`
+
+### 查找平台 ID 的方法
+如果用户只给了名字没给 ID：
+- **B站**: 搜索 `https://search.bilibili.com/upuser?keyword=人物名`，找到 UID
+- **Twitter/X**: 用户名就是 @handle
+- **YouTube**: 需要 Channel ID，可用 `python3 scripts/manage_ops.py search "用户名"` 搜索
+- **GitHub**: 用户名就是 github.com/username
+
+## 数据管理操作
+
+所有管理操作通过 `scripts/manage_ops.py` 完成（自动同步 watchlist.json + DB）：
+
+### 查看当前监控列表
+```bash
+cd ~/Desktop/osint-station && source .venv/bin/activate
+python3 scripts/manage_ops.py list
+```
+
+### 查看数据库统计
+```bash
+python3 scripts/manage_ops.py stats
+```
+
+### 新增人物
+```bash
+python3 scripts/manage_ops.py add "Elon Musk" --twitter elonmusk --github elonmusk --tags AI,SpaceX --priority high --notes "Tesla/SpaceX CEO"
+```
+支持的平台参数：`--twitter`、`--youtube`、`--github`、`--bilibili`、`--weibo`、`--reddit`
+
+### 删除人物
+```bash
+python3 scripts/manage_ops.py remove "人物名"
+```
+
+### 修改优先级
+```bash
+python3 scripts/manage_ops.py priority "人物名" high  # high/medium/low
+```
+
+### 手动触发采集
+```bash
+python3 scripts/manage_ops.py collect "人物名"    # 单人采集
+python3 scripts/manage_ops.py collect --all        # 全量采集
+```
+
+### 搜索平台身份（Maigret）
+```bash
+python3 scripts/manage_ops.py search "用户名"
+```
+
+### 可选后处理（推送企微/飞书）
+```bash
+cd /Users/axureboutique/VideoProcessor && source .venv/bin/activate
+python3 processor.py "/Users/axureboutique/Desktop/osint-reports/人物名_YYYYMMDD.html"
+```
+
 ## 数据源
 
 - **数据库**: `~/Desktop/osint-station/storage/osint.db`
 - **LLM API**: 147AI (`api.147ai.cn/v1`)，模型 `gemini-2.0-flash` → fallback `gpt-4.1-nano`
 - **样式文件**: `~/Desktop/subtitle_work/style.css`
 - **输出目录**: `~/Desktop/osint-reports/`
+- **后端脚本**: `~/Desktop/osint-station/scripts/person_brief.py`
+- **共用数据层**: `~/Desktop/osint-station/scripts/osint_data.py`
+- **关注列表**: `~/Desktop/osint-station/config/watchlist.json`
