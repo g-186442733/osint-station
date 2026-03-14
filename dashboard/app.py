@@ -1225,8 +1225,15 @@ function renderResult(d) {
   // Identity grid — show top relevant platforms, collapse the rest
   const idGrid = document.getElementById('identityGrid');
   const IMPORTANT_PLATFORMS = ['twitter','github','youtube','bilibili','weibo','reddit','hackernews','linkedin','medium','substack','producthunt','kaggle','hackernoon.com','dev community','docker hub','stackoverflow'];
+  const NOISE_PLATFORMS = ['adultfriendfinder','livemaster','kaskus','mercadolivre','osu!','pling','skoob','splice','traktrain','xvideos','youporn','pornhub','redtube','xhamster','spankbang','motherless','tube8','cam4','chaturbate','bongacams','stripchat','flirt4free','livejasmin','myfreecams','freelancer','fiverr','ebay','etsy','imgur','9gag','ifunny','memrise','duolingo','letterboxd','last.fm','myanimelist','anilist','goodreads','bookmate','livelib','wattpad','quotev','tapas','webtoon','tiktok','kwai','likee','triller'];
   if (d.identity && d.identity.length > 0) {
-    const sorted = [...d.identity].sort((a,b) => {
+    // Filter out noise platforms and low confidence
+    const filtered = d.identity.filter(id => {
+      const plat = id.platform.toLowerCase();
+      if (NOISE_PLATFORMS.some(n => plat.includes(n))) return false;
+      return true;
+    });
+    const sorted = [...filtered].sort((a,b) => {
       const aImp = IMPORTANT_PLATFORMS.indexOf(a.platform.toLowerCase()) >= 0 ? 0 : 1;
       const bImp = IMPORTANT_PLATFORMS.indexOf(b.platform.toLowerCase()) >= 0 ? 0 : 1;
       return aImp - bImp || (b.confidence||0) - (a.confidence||0);
@@ -1290,7 +1297,10 @@ function renderResult(d) {
   if (tl.length === 0) {
     tlEl.innerHTML = '<div style="color:#8c8172;padding:20px">暂无时间线数据</div>';
   } else {
-    tlEl.innerHTML = tl.map(t => {
+    const TIMELINE_LIMIT = 20;
+    const visible = tl.slice(0, TIMELINE_LIMIT);
+    const hidden = tl.slice(TIMELINE_LIMIT);
+    const renderItem = (t) => {
       const color = COLORS[t.platform] || '#8c8172';
       const title = t.title || (t.content || '').slice(0, 80) || '(无内容)';
       const link = t.url ? `<a href="${t.url}" target="_blank">${title}</a>` : title;
@@ -1309,7 +1319,13 @@ function renderResult(d) {
           ${stats.length ? `<div class="tl-stats">${stats.join(' ')}</div>` : ''}
         </div>
       </div>`;
-    }).join('');
+    };
+    let html = visible.map(renderItem).join('');
+    if (hidden.length > 0) {
+      html += `<div id="hiddenTimeline" style="display:none">${hidden.map(renderItem).join('')}</div>`;
+      html += `<div style="text-align:center;padding:12px"><a href="#" onclick="const el=document.getElementById('hiddenTimeline');el.style.display=el.style.display==='none'?'block':'none';this.textContent=el.style.display==='none'?'展开更多 ${hidden.length} 条 ▼':'收起 ▲';return false" style="font-size:13px;color:#d44536;text-decoration:none">展开更多 ${hidden.length} 条 ▼</a></div>`;
+    }
+    tlEl.innerHTML = html;
   }
 }
 

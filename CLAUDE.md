@@ -1,5 +1,13 @@
 # CLAUDE.md — OSINT 工作站
 
+> ⚠️ **机器身份（每次 session 必读，禁止覆盖）**
+> - 本机用户：`axureboutique` | 主机名：`Freds-MacBook-Pro`
+> - 代号：**Pro**（MacBook Pro）
+> - 项目路径：`/Users/axureboutique/Desktop/osint-station/`
+> - 角色：OSINT 主仓库，负责开发、push 代码
+> - 另一台机器：`tanghao`（代号 **Air**，MacBook Air），负责拉取代码、测试、执行技能
+> - **你没有 `/Users/tanghao/` 的访问权限，不要尝试操作 Air 机器的文件**
+
 > 本文件供 AI 助手在新会话开始时阅读，包含所有必要上下文。
 
 ---
@@ -64,7 +72,16 @@ osint-station/
 │   ├── run_daily.py         # 每日定时任务入口
 │   ├── query.py             # 数据查询工具
 │   ├── search_user.py       # 用户名搜索
-│   └── setup_cron.sh        # crontab 配置
+│   ├── setup_cron.sh        # crontab 配置
+│   ├── osint_data.py        # 统一数据层（DB查询 + LLM封装 + 格式化）
+│   ├── person_brief.py      # 人物简报生成脚本
+│   ├── opportunity_radar.py # 商机雷达脚本
+│   ├── daily_digest.py      # 每日简报脚本
+│   └── manage_ops.py        # 数据管理操作
+├── skills/
+│   ├── osint-person-brief/  # 人物简报技能
+│   ├── osint-opportunity-radar/ # 商机雷达技能
+│   └── osint-daily-digest/  # 每日简报技能
 ├── .env                     # 环境变量（API Key、Cookie、Webhook）
 └── requirements.txt         # Python 依赖
 ```

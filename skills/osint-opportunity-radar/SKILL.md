@@ -101,8 +101,8 @@ python3 scripts/manage_ops.py priority "人物名" high  # 调优先级
 
 ### 可选后处理（推送企微/飞书）
 ```bash
-cd /Users/axureboutique/VideoProcessor && source .venv/bin/activate
-python3 processor.py "/Users/axureboutique/Desktop/osint-reports/商业机会_YYYYMMDD.html"
+cd ~/VideoProcessor && source .venv/bin/activate
+python3 processor.py ~/Desktop/osint-reports/商业机会_YYYYMMDD.html
 ```
 
 ## 数据源

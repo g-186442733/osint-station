@@ -57,12 +57,49 @@ def _call_llm(prompt: str, system: str = "") -> str:
     return ""
 
 
+# Maigret 噪音过滤：高价值平台白名单
+# 只有白名单内的 Maigret 结果才默认展示，其余折叠
+MAIGRET_WHITELIST = {
+    'github', 'gitlab', 'gitee', 'kaggle', 'stackoverflow', 'docker hub',
+    'twitter', 'youtube', 'bilibili', 'weibo', 'reddit', 'hackernews',
+    'linkedin', 'medium', 'substack', 'producthunt', 'hackernoon.com',
+    'dev community', 'tiktok', 'telegram', 'behance', 'dribbble',
+    'instagram', 'threads', 'mastodon', 'bluesky',
+}
+
+# 明确的成人/无关平台黑名单，直接丢弃
+MAIGRET_BLACKLIST = {
+    'adultfriendfinder', 'xhamster', 'xvideos', 'chaturbate', 'bongacams',
+    'livejasmin', 'eporner', 'e621', 'forumophilia', 'tinder',
+    'livemaster', 'kaskus', 'mercadolivre', 'rutracker', 'kwejk',
+    'kwork', 'advego', 'irecommend.ru', 'otzovik', 'mirtesen',
+    'nn.ru', 'spletnik', 'uchportal', 'smart-lab.ru', '7dach',
+    'iphones.ru', 'championat',
+}
+
+
 def get_identity_map(slug: str, db: sqlite3.Connection) -> list[dict]:
     rows = db.execute(
         "SELECT platform, platform_username, platform_url, confidence, source FROM identity_mappings WHERE profile_slug = ?",
         (slug,),
     ).fetchall()
-    return [dict(r) for r in rows]
+
+    results = []
+    for r in rows:
+        d = dict(r)
+        plat = d['platform'].lower()
+
+        # 黑名单平台直接跳过
+        if plat in MAIGRET_BLACKLIST:
+            continue
+
+        # Maigret 来源的非白名单平台，标记为低可信度
+        if d.get('source') == 'maigret' and plat not in MAIGRET_WHITELIST:
+            d['noise'] = True  # 前端可用此标记决定是否折叠
+
+        results.append(d)
+
+    return results
 
 
 def get_influence_stats(slug: str, db: sqlite3.Connection) -> dict:
