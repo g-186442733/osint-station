@@ -1,0 +1,143 @@
+21:00:01 [daily_run] INFO: ==================================================
+21:00:01 [daily_run] INFO: 🚀 OSINT 每日任务启动 — 2026-03-14 21:00
+21:00:01 [daily_run] INFO: ==================================================
+21:00:01 [daily_run] INFO: 
+📡 Step 1: 执行数据采集...
+21:00:01 [etl.pipeline] INFO: 开始采集 15 个人物...
+21:00:01 [collectors.bilibili.collector] INFO: [bilibili] 开始采集 UID=4401694
+21:00:26 [collectors.bilibili.collector] INFO: [bilibili] UID=4401694 获取到 100 条视频
+21:00:26 [collectors.base] INFO: [bilibili] 原始数据已保存: /Users/axureboutique/Desktop/osint-station/data/raw/bilibili/videos_4401694_20260314_210026.json
+21:00:26 [etl.pipeline] INFO: [林亦LYi] bilibili: 获取 100 条，新增 80 条
+21:00:26 [collectors.weibo.collector] INFO: [weibo] 开始采集 UID=6444741184
+21:00:40 [collectors.weibo.collector] INFO: [weibo] UID=6444741184 获取到 32 条微博
+21:00:40 [collectors.base] INFO: [weibo] 原始数据已保存: /Users/axureboutique/Desktop/osint-station/data/raw/weibo/posts_6444741184_20260314_210040.json
+21:00:40 [etl.pipeline] INFO: [林亦LYi] weibo: 获取 32 条，新增 12 条
+21:00:40 [collectors.twitter.collector] INFO: [twitter] 开始采集 @linyiLYi
+21:00:40 [etl.pipeline] ERROR: [林亦LYi] twitter 采集失败: No module named 'twikit'
+21:00:40 [collectors.youtube.collector] INFO: [youtube] 开始采集 channel=UC4dtpugIYK56S_7btf5a-iQ
+21:00:40 [etl.pipeline] ERROR: [林亦LYi] youtube 采集失败: No module named 'scrapetube'
+21:00:40 [collectors.github.collector] INFO: [github] 开始采集用户 linyiLYi
+21:00:42 [collectors.base] INFO: [github] 原始数据已保存: /Users/axureboutique/Desktop/osint-station/data/raw/github/user_linyiLYi_20260314_210042.json
+21:00:42 [collectors.github.collector] INFO: [github] linyiLYi 获取到 6 条动态
+21:00:42 [etl.pipeline] INFO: [林亦LYi] github: 获取 6 条，新增 0 条
+21:00:42 [collectors.weibo.collector] INFO: [weibo] 开始采集 UID=1197161814
+21:00:56 [collectors.weibo.collector] INFO: [weibo] UID=1197161814 获取到 30 条微博
+21:00:56 [collectors.base] INFO: [weibo] 原始数据已保存: /Users/axureboutique/Desktop/osint-station/data/raw/weibo/posts_1197161814_20260314_210056.json
+21:00:56 [etl.pipeline] INFO: [李开复] weibo: 获取 30 条，新增 10 条
+21:00:56 [collectors.twitter.collector] INFO: [twitter] 开始采集 @kaifulee
+21:00:56 [etl.pipeline] ERROR: [李开复] twitter 采集失败: No module named 'twikit'
+21:00:56 [collectors.twitter.collector] INFO: [twitter] 开始采集 @qilu
+21:00:56 [etl.pipeline] ERROR: [陆奇] twitter 采集失败: No module named 'twikit'
+21:00:56 [collectors.twitter.collector] INFO: [twitter] 开始采集 @sama
+21:00:56 [etl.pipeline] ERROR: [Sam Altman] twitter 采集失败: No module named 'twikit'
+21:00:56 [collectors.github.collector] INFO: [github] 开始采集用户 sama
+21:00:59 [collectors.base] INFO: [github] 原始数据已保存: /Users/axureboutique/Desktop/osint-station/data/raw/github/user_sama_20260314_210059.json
+21:00:59 [collectors.github.collector] INFO: [github] sama 获取到 1 条动态
+21:00:59 [etl.pipeline] INFO: [Sam Altman] github: 获取 1 条，新增 0 条
+21:00:59 [collectors.reddit.collector] INFO: [reddit] 开始采集用户 u/samaltman
+21:01:01 [collectors.reddit.collector] INFO: [reddit] u/samaltman 获取到 6 条帖子
+21:01:01 [collectors.base] INFO: [reddit] 原始数据已保存: /Users/axureboutique/Desktop/osint-station/data/raw/reddit/user_samaltman_20260314_210101.json
+21:01:01 [etl.pipeline] INFO: [Sam Altman] reddit: 获取 6 条，新增 0 条
+21:01:01 [collectors.youtube.collector] INFO: [youtube] 开始采集 channel=UCUGLhcs3-3y_yhZZsgRzrzw
+21:01:01 [etl.pipeline] ERROR: [StorytellerFan] youtube 采集失败: No module named 'scrapetube'
+21:01:01 [collectors.youtube.collector] INFO: [youtube] 开始采集 channel=UCextK3-WA41h3GSO-bNvvZA
+21:01:01 [etl.pipeline] ERROR: [泛凯说AI] youtube 采集失败: No module named 'scrapetube'
+21:01:01 [collectors.youtube.collector] INFO: [youtube] 开始采集 channel=UCgXl5H1V4Fq4q0_gJYXR3bw
+21:01:01 [etl.pipeline] ERROR: [mykey-sano] youtube 采集失败: No module named 'scrapetube'
+21:01:01 [collectors.youtube.collector] INFO: [youtube] 开始采集 channel=UCMenHpvUet8myDntrTh7Ckw
+21:01:01 [etl.pipeline] ERROR: [AIHub Lab] youtube 采集失败: No module named 'scrapetube'
+21:01:01 [collectors.youtube.collector] INFO: [youtube] 开始采集 channel=UCGWYKICLOE8Wxy7q3eYXmPA
+21:01:01 [etl.pipeline] ERROR: [Best Partners] youtube 采集失败: No module named 'scrapetube'
+21:01:01 [collectors.youtube.collector] INFO: [youtube] 开始采集 channel=UCNJ1Ymd5yFuUPtn21xtRbbw
+21:01:01 [etl.pipeline] ERROR: [AI Explained] youtube 采集失败: No module named 'scrapetube'
+21:01:01 [collectors.youtube.collector] INFO: [youtube] 开始采集 channel=UCbfYPyITQ-7l4upoX8nvctg
+21:01:01 [etl.pipeline] ERROR: [Two Minute Papers] youtube 采集失败: No module named 'scrapetube'
+21:01:01 [collectors.youtube.collector] INFO: [youtube] 开始采集 channel=UCuK2Mf5As9OKfWU7XV6yzCg
+21:01:01 [etl.pipeline] ERROR: [MrEflow] youtube 采集失败: No module named 'scrapetube'
+21:01:01 [collectors.youtube.collector] INFO: [youtube] 开始采集 channel=UC2Xd-TjJByJyK2w1zNwY0zQ
+21:01:01 [etl.pipeline] ERROR: [Fireship] youtube 采集失败: No module named 'scrapetube'
+21:01:01 [collectors.github.collector] INFO: [github] 开始采集用户 fireship-io
+21:01:04 [collectors.base] INFO: [github] 原始数据已保存: /Users/axureboutique/Desktop/osint-station/data/raw/github/user_fireship-io_20260314_210104.json
+21:01:04 [collectors.github.collector] INFO: [github] fireship-io 获取到 10 条动态
+21:01:04 [etl.pipeline] INFO: [Fireship] github: 获取 10 条，新增 2 条
+21:01:04 [collectors.youtube.collector] INFO: [youtube] 开始采集 channel=UCawZsQWqfGSbCI5yjkdVkTA
+21:01:04 [etl.pipeline] ERROR: [Matthew Berman] youtube 采集失败: No module named 'scrapetube'
+21:01:04 [collectors.youtube.collector] INFO: [youtube] 开始采集 channel=UCQ1VQj-37kl2yS_VUhfQHsw
+21:01:04 [etl.pipeline] ERROR: [a16z] youtube 采集失败: No module named 'scrapetube'
+21:01:04 [collectors.github.collector] INFO: [github] 开始采集用户 a16z
+21:01:06 [collectors.base] INFO: [github] 原始数据已保存: /Users/axureboutique/Desktop/osint-station/data/raw/github/user_a16z_20260314_210106.json
+21:01:06 [collectors.github.collector] INFO: [github] a16z 获取到 8 条动态
+21:01:06 [etl.pipeline] INFO: [a16z] github: 获取 8 条，新增 1 条
+21:01:06 [etl.pipeline] INFO: 开始采集 5 个Reddit子版...
+21:01:06 [collectors.reddit.collector] INFO: [reddit] 开始采集子版 r/MachineLearning
+21:01:09 [collectors.reddit.collector] INFO: [reddit] r/MachineLearning 获取到 100 条帖子
+21:01:09 [collectors.base] INFO: [reddit] 原始数据已保存: /Users/axureboutique/Desktop/osint-station/data/raw/reddit/sub_MachineLearning_20260314_210109.json
+21:01:09 [etl.pipeline] INFO: [r/MachineLearning] reddit: 获取 100 条，新增 80 条
+21:01:09 [collectors.reddit.collector] INFO: [reddit] 开始采集子版 r/LocalLLaMA
+21:01:13 [collectors.reddit.collector] INFO: [reddit] r/LocalLLaMA 获取到 100 条帖子
+21:01:13 [collectors.base] INFO: [reddit] 原始数据已保存: /Users/axureboutique/Desktop/osint-station/data/raw/reddit/sub_LocalLLaMA_20260314_210113.json
+21:01:13 [etl.pipeline] INFO: [r/LocalLLaMA] reddit: 获取 100 条，新增 80 条
+21:01:13 [collectors.reddit.collector] INFO: [reddit] 开始采集子版 r/artificial
+21:01:17 [collectors.reddit.collector] INFO: [reddit] r/artificial 获取到 100 条帖子
+21:01:17 [collectors.base] INFO: [reddit] 原始数据已保存: /Users/axureboutique/Desktop/osint-station/data/raw/reddit/sub_artificial_20260314_210117.json
+21:01:17 [etl.pipeline] INFO: [r/artificial] reddit: 获取 100 条，新增 80 条
+21:01:17 [collectors.reddit.collector] INFO: [reddit] 开始采集子版 r/OpenAI
+21:01:20 [collectors.reddit.collector] INFO: [reddit] r/OpenAI 获取到 100 条帖子
+21:01:20 [collectors.base] INFO: [reddit] 原始数据已保存: /Users/axureboutique/Desktop/osint-station/data/raw/reddit/sub_OpenAI_20260314_210120.json
+21:01:20 [etl.pipeline] INFO: [r/OpenAI] reddit: 获取 100 条，新增 80 条
+21:01:20 [collectors.reddit.collector] INFO: [reddit] 开始采集子版 r/singularity
+21:01:25 [collectors.reddit.collector] INFO: [reddit] r/singularity 获取到 100 条帖子
+21:01:25 [collectors.base] INFO: [reddit] 原始数据已保存: /Users/axureboutique/Desktop/osint-station/data/raw/reddit/sub_singularity_20260314_210125.json
+21:01:25 [etl.pipeline] INFO: [r/singularity] reddit: 获取 100 条，新增 80 条
+21:01:25 [etl.pipeline] INFO: 开始采集 Hacker News ['top']...
+21:01:25 [collectors.hackernews.collector] INFO: [hackernews] 开始采集 top stories
+21:01:44 [collectors.hackernews.collector] INFO: [hackernews] topstories 获取到 99 条故事
+21:01:44 [collectors.base] INFO: [hackernews] 原始数据已保存: /Users/axureboutique/Desktop/osint-station/data/raw/hackernews/top_20260314_210144.json
+21:01:44 [etl.pipeline] INFO: [HN top] hackernews: 获取 99 条，新增 99 条
+21:01:44 [etl.pipeline] INFO: 开始话题关键词采集 (3 个话题)...
+21:01:47 [etl.pipeline] INFO: [话题:AI Agent] reddit: 30 条，新增 30
+21:01:52 [etl.pipeline] INFO: [话题:AI Agent] hackernews: 30 条，新增 30
+21:01:52 [etl.pipeline] ERROR: [话题:AI Agent] youtube 搜索失败: No module named 'scrapetube'
+21:01:59 [etl.pipeline] INFO: [话题:AGI] reddit: 30 条，新增 26
+21:02:02 [etl.pipeline] INFO: [话题:AGI] hackernews: 30 条，新增 23
+21:02:02 [etl.pipeline] ERROR: [话题:AGI] youtube 搜索失败: No module named 'scrapetube'
+21:02:02 [etl.pipeline] ERROR: [话题:大模型] youtube 搜索失败: No module named 'scrapetube'
+21:02:02 [etl.pipeline] INFO: 采集完成，共新增 713 条内容
+21:02:02 [daily_run] INFO:   采集完成: 共新增 713 条内容
+21:02:02 [daily_run] INFO: 
+🏷️ Step 2: 话题分类 (最近 48h)...
+21:02:32 [etl.analyzer] WARNING: LLM 调用失败 (model=gemini-2.0-flash): HTTPSConnectionPool(host='api.147ai.cn', port=443): Read timed out. (read timeout=30)
+21:03:13 [etl.analyzer] WARNING: LLM 调用失败 (model=gemini-2.0-flash): HTTPSConnectionPool(host='api.147ai.cn', port=443): Read timed out. (read timeout=30)
+21:03:48 [etl.analyzer] WARNING: LLM 调用失败 (model=gemini-2.0-flash): 429 Client Error: Too Many Requests for url: https://api.147ai.cn/v1/chat/completions
+21:04:31 [etl.analyzer] WARNING: LLM 调用失败 (model=gemini-2.0-flash): HTTPSConnectionPool(host='api.147ai.cn', port=443): Read timed out. (read timeout=30)
+21:05:04 [etl.analyzer] WARNING: LLM 调用失败 (model=gemini-2.0-flash): HTTPSConnectionPool(host='api.147ai.cn', port=443): Read timed out. (read timeout=30)
+21:05:08 [etl.analyzer] INFO: 话题分类完成，共分类 31 条帖子
+21:05:08 [daily_run] INFO:   分类完成: 31 条帖子
+21:05:08 [daily_run] INFO: 
+📈 Step 2.5: 更新话题趋势评分...
+21:05:08 [etl.analyzer] INFO: 趋势评分更新完成，共更新 20 个话题
+21:05:08 [daily_run] INFO:   趋势评分完成: 20 个话题
+21:05:08 [daily_run] INFO: 
+📝 Step 3: 生成情报简报 (回顾 48h)...
+21:05:38 [etl.analyzer] WARNING: LLM 调用失败 (model=gemini-2.0-flash): HTTPSConnectionPool(host='api.147ai.cn', port=443): Read timed out. (read timeout=30)
+21:05:50 [daily_run] INFO:   简报长度: 669 字符
+21:05:50 [daily_run] INFO:   保存至: /Users/axureboutique/Desktop/osint-station/reports/brief_20260314_2105.md
+21:05:50 [daily_run] INFO: 
+📤 Step 4: 推送情报简报...
+21:05:50 [reports.pusher] INFO: 企微推送成功
+21:05:50 [daily_run] INFO:   ✅ 推送成功
+21:05:50 [daily_run] INFO: 
+⏩ Step 5: 非周日，跳过周报（用 --weekly 强制生成）
+21:05:50 [daily_run] INFO: 
+🚨 Step 6: 异常行为检测...
+21:05:50 [intel.anomaly] INFO: 异常检测完成，发现 23 条告警
+21:05:51 [intel.anomaly] INFO: 已存储 23 条异常告警
+21:05:51 [daily_run] INFO:   异常检测完成: 23 条告警
+21:05:51 [daily_run] INFO: 
+==================================================
+21:05:51 [daily_run] INFO: ✅ 每日任务完成 — 耗时 349.6s
+21:05:51 [daily_run] INFO: ==================================================
+数据库已初始化: /Users/axureboutique/Desktop/osint-station/storage/osint.db
+创建的表: alerts, identity_mappings, posts, posts_fts, posts_fts_config, posts_fts_data, posts_fts_docsize, posts_fts_idx, profiles, sqlite_sequence, topics
+数据库已初始化: /Users/axureboutique/Desktop/osint-station/storage/osint.db
+创建的表: alerts, identity_mappings, posts, posts_fts, posts_fts_config, posts_fts_data, posts_fts_docsize, posts_fts_idx, profiles, sqlite_sequence, topics

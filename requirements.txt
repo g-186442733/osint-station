@@ -1,0 +1,19 @@
+# OSINT 工作站 — Python 依赖
+
+# 核心
+requests>=2.31.0
+python-dotenv>=1.0.0
+
+# B站采集
+bilibili-api-python>=17.0.0
+
+# 微博采集（标准库 requests 已覆盖）
+
+# Twitter/X 采集
+twikit>=2.3.0
+
+# YouTube 采集
+scrapetube>=2.6.0
+
+# 用户名搜索
+maigret>=0.4.4

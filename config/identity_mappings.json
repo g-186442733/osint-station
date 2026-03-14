@@ -1,0 +1,20 @@
+{
+  "_comment": "跨平台身份映射。初期手动标注，后续可半自动匹配。",
+  "mappings": {
+    "example_person": {
+      "display_name": "示例人物",
+      "platforms": {
+        "twitter": "@example",
+        "github": "example-dev",
+        "bilibili": "12345678",
+        "weibo": "example_weibo",
+        "xiaohongshu": null,
+        "douyin": null
+      },
+      "confirmed": false,
+      "confidence": 0.0,
+      "notes": "模板条目，替换为实际数据",
+      "last_updated": "2026-03-13"
+    }
+  }
+}

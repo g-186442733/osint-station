@@ -1,0 +1,245 @@
+{
+  "_comment": "关注的人物/话题列表 — AI 领域",
+  "people": [
+    {
+      "name": "林亦LYi",
+      "usernames": {
+        "bilibili": "4401694",
+        "weibo": "6444741184",
+        "twitter": "linyiLYi",
+        "youtube": "UC4dtpugIYK56S_7btf5a-iQ",
+        "github": "linyiLYi"
+      },
+      "tags": [
+        "AI",
+        "创业"
+      ],
+      "priority": "high",
+      "notes": "AI 创业者，Kimi 产品相关"
+    },
+    {
+      "name": "李开复",
+      "usernames": {
+        "weibo": "1197161814",
+        "twitter": "kaifulee"
+      },
+      "tags": [
+        "AI",
+        "投资",
+        "创业"
+      ],
+      "priority": "high",
+      "notes": "零一万物CEO、创新工场董事长，AI投资人"
+    },
+    {
+      "name": "陆奇",
+      "usernames": {
+        "twitter": "qilu"
+      },
+      "tags": [
+        "AI",
+        "创业",
+        "投资"
+      ],
+      "priority": "high",
+      "notes": "奇绩创坛创始人，前微软/百度高管"
+    },
+    {
+      "name": "Sam Altman",
+      "usernames": {
+        "twitter": "sama",
+        "github": "sama",
+        "reddit": "samaltman"
+      },
+      "tags": [
+        "AI",
+        "OpenAI",
+        "AGI"
+      ],
+      "priority": "high",
+      "notes": "OpenAI CEO"
+    },
+    {
+      "name": "StorytellerFan",
+      "usernames": {
+        "youtube": "UCUGLhcs3-3y_yhZZsgRzrzw"
+      },
+      "tags": [
+        "AI",
+        "科普"
+      ],
+      "priority": "medium",
+      "notes": "AI故事讲述者"
+    },
+    {
+      "name": "泛凯说AI",
+      "usernames": {
+        "youtube": "UCextK3-WA41h3GSO-bNvvZA"
+      },
+      "tags": [
+        "AI",
+        "中文"
+      ],
+      "priority": "medium",
+      "notes": "中文AI科普频道"
+    },
+    {
+      "name": "mykey-sano",
+      "usernames": {
+        "youtube": "UCgXl5H1V4Fq4q0_gJYXR3bw"
+      },
+      "tags": [
+        "AI",
+        "日语"
+      ],
+      "priority": "medium",
+      "notes": "日本AI/科技频道"
+    },
+    {
+      "name": "AIHub Lab",
+      "usernames": {
+        "youtube": "UCMenHpvUet8myDntrTh7Ckw"
+      },
+      "tags": [
+        "AI",
+        "教程"
+      ],
+      "priority": "medium",
+      "notes": "AI工具/教程频道"
+    },
+    {
+      "name": "Best Partners",
+      "usernames": {
+        "youtube": "UCGWYKICLOE8Wxy7q3eYXmPA"
+      },
+      "tags": [
+        "AI",
+        "商业"
+      ],
+      "priority": "medium",
+      "notes": "AI商业应用频道"
+    },
+    {
+      "name": "AI Explained",
+      "usernames": {
+        "youtube": "UCNJ1Ymd5yFuUPtn21xtRbbw"
+      },
+      "tags": [
+        "AI",
+        "深度分析"
+      ],
+      "priority": "high",
+      "notes": "深度AI分析，高质量英文频道"
+    },
+    {
+      "name": "Two Minute Papers",
+      "usernames": {
+        "youtube": "UCbfYPyITQ-7l4upoX8nvctg"
+      },
+      "tags": [
+        "AI",
+        "论文"
+      ],
+      "priority": "medium",
+      "notes": "AI论文快速解读"
+    },
+    {
+      "name": "MrEflow",
+      "usernames": {
+        "youtube": "UCuK2Mf5As9OKfWU7XV6yzCg"
+      },
+      "tags": [
+        "AI",
+        "中文"
+      ],
+      "priority": "medium",
+      "notes": "中文AI频道"
+    },
+    {
+      "name": "Fireship",
+      "usernames": {
+        "youtube": "UC2Xd-TjJByJyK2w1zNwY0zQ",
+        "github": "fireship-io"
+      },
+      "tags": [
+        "AI",
+        "编程",
+        "科技"
+      ],
+      "priority": "high",
+      "notes": "科技/编程快讯，100 seconds系列"
+    },
+    {
+      "name": "Matthew Berman",
+      "usernames": {
+        "youtube": "UCawZsQWqfGSbCI5yjkdVkTA"
+      },
+      "tags": [
+        "AI",
+        "评测"
+      ],
+      "priority": "medium",
+      "notes": "AI模型评测/新闻"
+    },
+    {
+      "name": "a16z",
+      "usernames": {
+        "youtube": "UCQ1VQj-37kl2yS_VUhfQHsw",
+        "github": "a16z"
+      },
+      "tags": [
+        "AI",
+        "投资",
+        "创业"
+      ],
+      "priority": "high",
+      "notes": "Andreessen Horowitz，顶级VC"
+    }
+  ],
+  "subreddits": [
+    "MachineLearning",
+    "LocalLLaMA",
+    "artificial",
+    "OpenAI",
+    "singularity"
+  ],
+  "hackernews": {
+    "story_types": [
+      "top"
+    ],
+    "_comment": "采集HN热门故事，自动关联已知人物"
+  },
+  "topics": [
+    {
+      "keyword": "AI Agent",
+      "platforms": [
+        "bilibili",
+        "weibo",
+        "twitter",
+        "youtube",
+        "reddit",
+        "hackernews"
+      ],
+      "notes": "追踪 AI Agent 相关讨论"
+    },
+    {
+      "keyword": "AGI",
+      "platforms": [
+        "twitter",
+        "youtube",
+        "reddit",
+        "hackernews"
+      ],
+      "notes": "追踪 AGI/通用人工智能相关讨论"
+    },
+    {
+      "keyword": "大模型",
+      "platforms": [
+        "bilibili",
+        "weibo",
+        "youtube"
+      ],
+      "notes": "追踪大语言模型相关动态"
+    }
+  ]
+}
