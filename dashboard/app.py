@@ -1222,40 +1222,41 @@ function renderResult(d) {
     <div class="card"><div class="label">平均点赞</div><div class="value">${fmt(inf.avg_likes)}</div></div>
     <div class="card"><div class="label">平均播放</div><div class="value">${fmt(inf.avg_views)}</div></div>`;
 
-  // Identity grid — show top relevant platforms, collapse the rest
+  // Identity grid — 后端已过滤黑名单+标记noise，前端分层展示
   const idGrid = document.getElementById('identityGrid');
-  const IMPORTANT_PLATFORMS = ['twitter','github','youtube','bilibili','weibo','reddit','hackernews','linkedin','medium','substack','producthunt','kaggle','hackernoon.com','dev community','docker hub','stackoverflow'];
-  const NOISE_PLATFORMS = ['adultfriendfinder','livemaster','kaskus','mercadolivre','osu!','pling','skoob','splice','traktrain','xvideos','youporn','pornhub','redtube','xhamster','spankbang','motherless','tube8','cam4','chaturbate','bongacams','stripchat','flirt4free','livejasmin','myfreecams','freelancer','fiverr','ebay','etsy','imgur','9gag','ifunny','memrise','duolingo','letterboxd','last.fm','myanimelist','anilist','goodreads','bookmate','livelib','wattpad','quotev','tapas','webtoon','tiktok','kwai','likee','triller'];
+  const IMPORTANT_PLATFORMS = ['twitter','github','youtube','bilibili','weibo','reddit','hackernews','linkedin','medium','substack','producthunt','kaggle','hackernoon.com','dev community','docker hub','stackoverflow','tiktok','telegram'];
   if (d.identity && d.identity.length > 0) {
-    // Filter out noise platforms and low confidence
-    const filtered = d.identity.filter(id => {
-      const plat = id.platform.toLowerCase();
-      if (NOISE_PLATFORMS.some(n => plat.includes(n))) return false;
-      return true;
-    });
-    const sorted = [...filtered].sort((a,b) => {
+    // 分层：已验证/白名单 vs 噪音
+    const verified = d.identity.filter(id => !id.noise);
+    const noisy = d.identity.filter(id => id.noise);
+
+    const sortByImportance = (arr) => [...arr].sort((a,b) => {
       const aImp = IMPORTANT_PLATFORMS.indexOf(a.platform.toLowerCase()) >= 0 ? 0 : 1;
       const bImp = IMPORTANT_PLATFORMS.indexOf(b.platform.toLowerCase()) >= 0 ? 0 : 1;
+      if (a.source === 'manual' && b.source !== 'manual') return -1;
+      if (b.source === 'manual' && a.source !== 'manual') return 1;
       return aImp - bImp || (b.confidence||0) - (a.confidence||0);
     });
-    const top = sorted.slice(0, 8);
-    const rest = sorted.slice(8);
+
+    const sortedVerified = sortByImportance(verified);
     const renderCard = (id) => {
       const color = COLORS[id.platform] || '#8c8172';
       const label = PLAT_LABELS[id.platform] || id.platform;
       const link = id.platform_url ? `<a href="${id.platform_url}" target="_blank">${id.platform_username || '—'}</a>` : (id.platform_username || '—');
+      const srcBadge = id.source === 'manual' ? '<span style="background:#7faa6e;color:#fff;font-size:10px;padding:1px 5px;border-radius:3px;margin-left:4px">已验证</span>' : '';
       return `<div class="id-card">
         <div class="id-platform" style="background:${color}">${label.charAt(0).toUpperCase()}</div>
         <div class="id-info">
-          <div class="id-username">${link}</div>
+          <div class="id-username">${link}${srcBadge}</div>
           <div class="id-confidence">${label} · 置信度 ${Math.round((id.confidence || 0) * 100)}%</div>
         </div>
       </div>`;
     };
-    let html = top.map(renderCard).join('');
-    if (rest.length > 0) {
-      html += `<div id="moreIdentities" style="display:none">${rest.map(renderCard).join('')}</div>`;
-      html += `<div style="grid-column:1/-1;text-align:center;padding:8px"><a href="#" onclick="document.getElementById('moreIdentities').style.display=document.getElementById('moreIdentities').style.display==='none'?'grid':'none';this.textContent=document.getElementById('moreIdentities').style.display==='none'?'展开其他 ${rest.length} 个平台 ▼':'收起 ▲';return false" style="font-size:13px;color:#d44536">展开其他 ${rest.length} 个平台 ▼</a></div>`;
+
+    let html = sortedVerified.map(renderCard).join('');
+    if (noisy.length > 0) {
+      html += `<div id="noisyIdentities" style="display:none">${noisy.map(renderCard).join('')}</div>`;
+      html += `<div style="grid-column:1/-1;text-align:center;padding:8px"><a href="#" onclick="document.getElementById('noisyIdentities').style.display=document.getElementById('noisyIdentities').style.display==='none'?'grid':'none';this.textContent=document.getElementById('noisyIdentities').style.display==='none'?'展开其他 ${noisy.length} 个匹配（低可信度） ▼':'收起 ▲';return false" style="font-size:12px;color:#8c8172">展开其他 ${noisy.length} 个匹配（低可信度） ▼</a></div>`;
     }
     idGrid.innerHTML = html;
   } else {
