@@ -101,7 +101,7 @@ def render_html(person_posts, industry_posts, analysis, days):
         <div class="stat-card green">
             <div class="stat-number">{len(platforms)}</div>
             <div class="stat-label">数据来源</div>
-            <div class="stat-desc">{', '.join(PLATFORM_LABELS.get(p, p) for p in list(platforms)[:5])}</div>
+            <div class="stat-desc">{', '.join(PLATFORM_LABELS.get(p, p) or p for p in list(platforms)[:5])}</div>
         </div>
         <div class="stat-card red">
             <div class="stat-number">{total}</div>
