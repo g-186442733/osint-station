@@ -1,0 +1,66 @@
+name: AI PR Review
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  ai-review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get PR diff
+        id: diff
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh pr diff ${{ github.event.pull_request.number }} > pr.diff
+          DIFF_SIZE=$(wc -c < pr.diff)
+          echo "diff_size=$DIFF_SIZE" >> "$GITHUB_OUTPUT"
+          if [ "$DIFF_SIZE" -gt 50000 ]; then
+            head -c 50000 pr.diff > pr_trimmed.diff
+            mv pr_trimmed.diff pr.diff
+            echo "truncated=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: AI Review via GitHub Models
+        id: review
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          DIFF=$(cat pr.diff)
+          TITLE="${{ github.event.pull_request.title }}"
+
+          PROMPT="You are a senior code reviewer. Review this PR titled \"${TITLE}\".
+          Focus on: potential bugs, security issues (hardcoded credentials, injection risks), Python code quality, error handling gaps.
+          Be concise. Use bullet points. If the code looks good, say so briefly.
+
+          PR Diff:
+          ${DIFF}"
+
+          ESCAPED_PROMPT=$(echo "$PROMPT" | jq -Rs .)
+
+          RESPONSE=$(curl -s -X POST \
+            "https://models.github.ai/chat/completions" \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"model\": \"openai/gpt-4.1-mini\",
+              \"messages\": [{\"role\": \"user\", \"content\": $ESCAPED_PROMPT}],
+              \"max_tokens\": 2000
+            }" | jq -r '.choices[0].message.content // "Review failed — no response from model."')
+
+          echo "$RESPONSE" > review_output.md
+
+      - name: Post review comment
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body-path: review_output.md
